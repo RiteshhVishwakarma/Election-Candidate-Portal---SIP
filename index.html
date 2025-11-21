@@ -9,9 +9,11 @@
     :root{
       --bg: #0f1724;
       --card: #0b1220;
-      --accent: #F8B500; /* user earlier liked this color */
+      --accent: #F8B500;
+      --accent-2: #00ADB5;
       --muted: #9aa6b2;
       --glass: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.06);
       --success: #16a34a;
       --danger: #ef4444;
       --radius: 12px;
@@ -24,7 +26,7 @@
     .container{max-width:1100px;margin:18px auto;padding:16px}
     header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:sticky;top:10px;background:transparent;padding:6px 0;z-index:10}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#00ADB5);display:flex;align-items:center;justify-content:center;font-weight:700;color:#072032}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#072032}
     h1{font-size:18px;margin:0}
     p.lead{margin:0;color:var(--muted);font-size:13px}
 
@@ -32,23 +34,42 @@
     .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     .search{background:var(--glass);padding:8px 10px;border-radius:999px;display:flex;align-items:center;gap:8px;min-width:180px;flex:1}
     .search input{border:0;background:transparent;outline:none;color:inherit;width:100%;font-size:14px}
-    .btn{background:var(--accent);padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    .btn{background:linear-gradient(180deg,var(--accent),#e6a800);padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700;color:#072032;box-shadow:0 6px 18px rgba(248,181,0,0.12)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--accent);padding:10px 12px;font-weight:600}
 
     main{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:12px;align-items:start}
 
     /* list area */
     .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,6,23,0.6)}
     .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-    .chip{padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:999px;font-size:13px;cursor:pointer}
+    .chip{padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted)}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center;border:1px solid rgba(255,255,255,0.03)}
     .avatar{width:64px;height:64px;border-radius:10px;flex-shrink:0;background:linear-gradient(180deg,#f5f5f5,#ddd);display:flex;align-items:center;justify-content:center;color:#072032;font-weight:700;font-size:18px}
     .meta{flex:1;min-width:0}
     .meta h3{margin:0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .meta p{margin:6px 0 0 0;color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+    /* BUTTON styles fixed for visibility on dark bg */
     .actions{display:flex;gap:8px;align-items:center}
-    .small{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:13px}
+    .small{
+      padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:13px;
+      background: rgba(255,255,255,0.92); color: #072032; font-weight:700;
+      box-shadow: 0 6px 16px rgba(2,6,23,0.25);
+    }
+    .small:hover{transform:translateY(-1px)}
+    .small.ghost{
+      background: rgba(255,255,255,0.06);
+      color: #e6eef6;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-weight:600;
+      box-shadow:none;
+    }
+    .small.ghost:hover{
+      background: rgba(255,255,255,0.12);
+      color:#072032;
+    }
 
     /* right sidebar */
     .sidebar .stats{display:flex;gap:10px;margin-bottom:12px}
@@ -81,8 +102,8 @@
       .card{flex-direction:row;align-items:center;padding:12px}
       .avatar{width:56px;height:56px}
       .meta h3{font-size:14px}
-      .actions{flex-direction:column;align-items:stretch;width:110px}
-      .small{width:100%;padding:10px;border-radius:8px}
+      .actions{flex-direction:column;align-items:stretch;width:120px}
+      .small{width:100%;padding:12px;border-radius:8px}
       .controls{gap:6px}
       header{padding-bottom:8px}
     }
@@ -97,7 +118,7 @@
 
     /* tiny visual helpers */
     .chip.active{outline:2px solid rgba(248,181,0,0.12);box-shadow:0 4px 14px rgba(0,0,0,0.35)}
-    .small.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04)}
+    .small.negative{background:rgba(239,68,68,0.96);color:#fff}
   </style>
 </head>
 <body>
@@ -271,31 +292,31 @@
         return true;
       });
 
-      listEl.innerHTML='';
-      if(filtered.length===0){
-        listEl.innerHTML='<div style="color:var(--muted);padding:18px">No candidates found. Add one using the form.</div>';
-      }
+    listEl.innerHTML='';
+    if(filtered.length===0){
+      listEl.innerHTML='<div style="color:var(--muted);padding:18px">No candidates found. Add one using the form.</div>';
+    }
 
-      filtered.forEach(c=>{
-        const el = document.createElement('div'); el.className='card';
-        el.innerHTML = `
-          <div class="avatar">${initials(c.name)}</div>
-          <div class="meta">
-            <h3>${escapeHtml(c.name)} <span style="font-size:12px;color:var(--muted);font-weight:600">• ${escapeHtml(c.party||'Independent')}</span></h3>
-            <p>${escapeHtml(c.bio||'—')}</p>
+    filtered.forEach(c=>{
+      const el = document.createElement('div'); el.className='card';
+      el.innerHTML = `
+        <div class="avatar">${initials(c.name)}</div>
+        <div class="meta">
+          <h3>${escapeHtml(c.name)} <span style="font-size:12px;color:var(--muted);font-weight:600">• ${escapeHtml(c.party||'Independent')}</span></h3>
+          <p>${escapeHtml(c.bio||'—')}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <div style="font-weight:700">${c.votes}</div>
+          <div class="actions">
+            <button class="small ghost" data-id="${c.id}" data-action="edit">Edit</button>
+            <button class="small ghost" data-id="${c.id}" data-action="reset">Reset</button>
+            <button class="small ghost negative" data-id="${c.id}" data-action="delete">Delete</button>
+            <button class="small" data-id="${c.id}" data-action="vote">Vote</button>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-            <div style="font-weight:700">${c.votes}</div>
-            <div class="actions">
-              <button class="small ghost" data-id="${c.id}" data-action="edit">Edit</button>
-              <button class="small ghost" data-id="${c.id}" data-action="reset">Reset</button>
-              <button class="small ghost" data-id="${c.id}" data-action="delete">Delete</button>
-              <button class="small" data-id="${c.id}" data-action="vote">Vote</button>
-            </div>
-          </div>
-        `;
-        listEl.appendChild(el);
-      });
+        </div>
+      `;
+      listEl.appendChild(el);
+    });
 
       // attach card listeners
       listEl.querySelectorAll('button').forEach(b=>b.addEventListener('click', onCardAction));
@@ -354,7 +375,7 @@
       const max = Math.max(...state.map(s=>s.votes),1);
       state.slice(0,6).forEach(s=>{
         const h = Math.round((s.votes/max)*100);
-        const div = document.createElement('div'); div.className='bar'; div.style.height = (10 + h) + '%'; div.style.background = `linear-gradient(180deg, var(--accent), #00ADB5)`; div.textContent = s.votes;
+        const div = document.createElement('div'); div.className='bar'; div.style.height = (10 + h) + '%'; div.style.background = `linear-gradient(180deg, var(--accent), var(--accent-2))`; div.textContent = s.votes;
         div.title = `${s.name} — ${s.votes} votes`;
         chart.appendChild(div);
       });
